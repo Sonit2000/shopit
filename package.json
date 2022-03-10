@@ -1,0 +1,32 @@
+{
+  "name": "shopit",
+  "version": "1.0.0",
+  "description": "full e-commerce site using mern",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "SET NODE_ENV = DEVELOPMENT & nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION & nodemon backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sonit2000/shopit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sonit2000/shopit/issues"
+  },
+  "homepage": "https://github.com/Sonit2000/shopit#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.5",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
