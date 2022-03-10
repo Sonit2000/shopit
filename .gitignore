@@ -1,5 +1,5 @@
 #
-/backennd/config/config.env
+/backend/config/config.env
 /node_modules
 
 npm-debug.log*
