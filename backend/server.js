@@ -1,18 +1,33 @@
-const app = require('./app');
-const dotenv = require('dotenv');
-const morgan = require('morgan');
-const connectDatabase =require('./config/database')
-const bodyParse = require('body-parser');
+const app = require("./app");
 
-//
-app.use(bodyParse.json({limit: '500mb'}));
-app.use(morgan('common'))
-//Setting up  config file
-dotenv.config({path: 'backend/config/config.env'})
+const dotenv = require("dotenv");
+const connectDatabase = require("./config/database")
 
-// CONNECT DATABASE
+//Handling Uncaught Exception
+process.on("uncaughtException", (err) => {
+     console.log(`Error: ${err.message}`);
+     console.log(`Shutting down the server due to Uncaught Exception`);
+     process.exit(1);
+   });
+
+// Config
+dotenv.config({path: "backend/config/config.env"});
+
+//connecting to database
 connectDatabase();
 
-app.listen(8000,()=>{
-    console.log(`Server start on PORT: 8000 in ${process.env.NODE_ENV} node`)
-})
+const server = app.listen(process.env.PORT,()=>{
+     console.log(`Server is working on http://localhost:${process.env.PORT}`);
+});
+
+
+
+//unhandled promise rejections
+process.on("unhandledRejection", (err) => {
+     console.log(`Error: ${err.message}`);
+     console.log(`Shutting down the server due to Unhandled Promise Rejection`);
+   
+     server.close(() => {
+       process.exit(1);
+     });
+   });

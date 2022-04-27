@@ -1,2 +1,0 @@
-# shopit
-build fullstack
